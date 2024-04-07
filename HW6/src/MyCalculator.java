@@ -4,9 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-/**
- * 
- */
+// This class defines a basic calculator GUI using Java event listners, swing and awt.
 public class MyCalculator extends JFrame {
     private JTextField inputField;
     private double result;
@@ -17,6 +15,7 @@ public class MyCalculator extends JFrame {
         createUI();
     }
 
+    // Generated the interface if the GUI including the buttons and fields.
     private void createUI() {
         setTitle("HW 6 Calculator GUI");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -31,9 +30,13 @@ public class MyCalculator extends JFrame {
         result = 0;
         startOfNumber = true;
 
+        // Define a jpanel which is similar to a lightweight container.
         JPanel panel = new JPanel();
+
+        // Establish buttons in grid pattern.
         panel.setLayout(new GridLayout(4, 4, 5, 5));
 
+        // Button labels for grid in the form of a dyanmically allocated array of strings.
         String[] buttonLabels = {
                 "7", "8", "9", "/",
                 "4", "5", "6", "*",
@@ -41,6 +44,7 @@ public class MyCalculator extends JFrame {
                 "0", ".", "=", "+"
         };
 
+        // Map buttons to grid and apply event listeners for buttons.
         for (String label : buttonLabels) {
             JButton button = new JButton(label);
             button.addActionListener(new ButtonClickListener());
@@ -65,7 +69,7 @@ public class MyCalculator extends JFrame {
                 }
                 startOfNumber = false;
             } else {
-                // Thi defines a special case for "-" to allow negative numbers
+                // Defines a special case for "-" to allow negative numbers
                 if (startOfNumber) {
                     if (command.equals("-")) {
                         inputField.setText(command);
@@ -108,6 +112,8 @@ public class MyCalculator extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
+
+            // Call a new instance of calculator.
             MyCalculator calculator = new MyCalculator();
             calculator.setVisible(true);
         });
